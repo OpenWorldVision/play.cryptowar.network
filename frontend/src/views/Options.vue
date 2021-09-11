@@ -14,12 +14,12 @@
       <div class="row">
         <div class="col">
           <b-list-group class="dark-bg">
-            <b-list-group-item class="d-flex justify-content-between align-items-center">
+            <!-- <b-list-group-item class="d-flex justify-content-between align-items-center">
               <h4>3D Graphics</h4>
               <b-form-checkbox size="lg" :checked="showGraphics" @change="toggleGraphics()" switch>
                 <b class="float-left">{{ showGraphics ? 'On' : 'Off' }}</b>
               </b-form-checkbox>
-            </b-list-group-item>
+            </b-list-group-item> -->
             <b-list-group-item class="d-flex justify-content-between align-items-center">
               <h4>Hide Rewards Bar</h4>
               <b-form-checkbox size="lg" :checked="hideRewards" @change="toggleRewards()" switch>
@@ -139,13 +139,13 @@ export default Vue.extend({
 
   methods: {
     ...(mapActions(['claimTokenRewards']) as StoreMappedActions),
-    toggleGraphics() {
-      this.showGraphics = !this.showGraphics;
-      if (this.showGraphics) localStorage.setItem('useGraphics', 'true');
-      else localStorage.setItem('useGraphics', 'false');
+    // toggleGraphics() {
+    //   this.showGraphics = !this.showGraphics;
+    //   if (this.showGraphics) localStorage.setItem('useGraphics', 'true');
+    //   else localStorage.setItem('useGraphics', 'false');
 
-      Events.$emit('setting:useGraphics', { value: this.showGraphics });
-    },
+    //   Events.$emit('setting:useGraphics', { value: this.showGraphics });
+    // },
 
     toggleRewards() {
       this.hideRewards = !this.hideRewards;
