@@ -3,7 +3,11 @@
 
     <div v-if="ownCharacters.length === 0" class="blank-slate">
        <div class="current-promotion promotion-hero-left">
+<<<<<<< HEAD
         <strong class="upper-text">Only <strong class="upper-text promotion-number">{{ heroAmount }}</strong> heroes left!</strong>
+=======
+        <strong class="upper-text">Only <strong class="upper-text promotion-number">{{ heroAmount}}</strong> heroes left!</strong>
+>>>>>>> 9cf448a (feat: improve for release (#47))
       </div>
       <div class="current-promotion">
         <strong class="upper-text">Start earning today!</strong>
@@ -369,6 +373,7 @@ export default Vue.extend({
 .promotion-number {
   color: #f58b5b;
 }
+<<<<<<< HEAD
 
 .small-hero-left {
   display: flex;
@@ -376,4 +381,6 @@ export default Vue.extend({
   margin: 16px 4px;
   margin-right: 18px;
 }
+=======
+>>>>>>> 9cf448a (feat: improve for release (#47))
 </style>
