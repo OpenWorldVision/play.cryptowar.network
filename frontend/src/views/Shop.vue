@@ -57,14 +57,19 @@ export interface Nft {
 
 interface StoreMappedActions {
   fetchBoxPrice(): Promise<void>;
+  fetchTotalCommonBoxSupply(): Promise<number>;
+  fetchTotalRareBoxSupply(): Promise<number>;
 }
-
 
 export default Vue.extend({
   components: { NftList },
   data() {
     return {
       fetchBoxPriceInterval: 0,
+      fetchCommonBoxSupplyInterval: 0,
+      fetchRareBoxSupplyInterval: 0,
+      commonBoxSupply: 0,
+      rareBoxSupply: 0
     };
   },
   computed: {
@@ -113,6 +118,7 @@ export default Vue.extend({
           name: "Common Box",
           description: "Get common weapon, 1% chance to get 5-stars weapon",
           image: "scroll_06_te.png",
+          isSoldOut: Number(this.commonBoxSupply) === 0
         },
         {
           id: 1,
@@ -121,6 +127,7 @@ export default Vue.extend({
           name: "Rare Box",
           description: "Get rare weapon, 4% chance to get 5-stars weapon",
           image: "gold_chest.png",
+          isSoldOut: Number(this.rareBoxSupply) === 0
         },
       ] as SkillShopListing[];
 
@@ -133,7 +140,7 @@ export default Vue.extend({
   },
 
   methods: {
-    ...(mapActions(["fetchBoxPrice"]) as StoreMappedActions),
+    ...(mapActions(["fetchBoxPrice", 'fetchTotalRareBoxSupply','fetchTotalCommonBoxSupply']) as StoreMappedActions),
     convertWeiToSkill(wei: string) {
       return fromWeiEther(wei);
     },
@@ -168,10 +175,20 @@ export default Vue.extend({
     this.fetchBoxPriceInterval = setInterval(() => {
       this.fetchBoxPrice();
     }, 3000);
+    // @ts-ignore
+    this.fetchCommonBoxSupplyInterval = setInterval(async () => {
+      this.commonBoxSupply = await this.fetchTotalCommonBoxSupply();
+    }, 3000);
+    // @ts-ignore
+    this.fetchRareBoxSupplyInterval = setInterval(async () => {
+      this.rareBoxSupply = await this.fetchTotalRareBoxSupply();
+    }, 3000);
   },
-  beforeDestroy(){
+  beforeDestroy() {
     clearInterval(this.fetchBoxPriceInterval);
-  }
+    clearInterval(this.fetchCommonBoxSupplyInterval);
+    clearInterval(this.fetchRareBoxSupplyInterval);
+  },
 });
 </script>
 

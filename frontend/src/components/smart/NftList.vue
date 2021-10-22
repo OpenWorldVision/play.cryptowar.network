@@ -12,10 +12,14 @@
                       @mouseover="hover = !isMobile() || true"
                       @mouseleave="hover = !isMobile()" />
           <b-button
+            :disabled="nft.isSoldOut"
             class="shop-button"
             @click="buyItem(nft)">
-            <span class="gtag-link-others">
+            <span class="gtag-link-others" v-if="!nft.isSoldOut">
               Buy ({{ nft.nftPrice}} xBlade)
+            </span>
+            <span  v-if="nft.isSoldOut">
+              SOLD OUT
             </span>
           </b-button>
         </li>
