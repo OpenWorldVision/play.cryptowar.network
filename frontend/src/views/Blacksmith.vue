@@ -476,16 +476,16 @@ export default Vue.extend({
     const skillForgeCost = 0; /* await this.contracts.CryptoWars.methods.usdToxBlade(forgeCost).call({ from: this.defaultAccount });*/
     this.forgeCost = new BN(skillForgeCost).div(new BN(10).pow(18)).toFixed(4);
 
-    // const reforgeCost = await this.contracts.CryptoWars.methods.reforgeWeaponFee().call({ from: this.defaultAccount });
-    const skillReforgeCost = 0; /*  await this.contracts.CryptoWars.methods.usdToxBlade(reforgeCost).call({ from: this.defaultAccount });*/
+    const reforgeCost = await this.contracts.CryptoWars.methods.reforgeWeaponFee().call({ from: this.defaultAccount });
+    const skillReforgeCost =  await this.contracts.CryptoWars.methods.usdToxBlade(reforgeCost).call({ from: this.defaultAccount });
     this.reforgeCost = new BN(skillReforgeCost).div(new BN(10).pow(18)).toFixed(4);
 
-    // const reforgeDustCost = await this.contracts.CryptoWars.methods.reforgeWeaponWithDustFee().call({ from: this.defaultAccount });
-    const skillDustReforgeCost =0; /* await this.contracts.CryptoWars.methods.usdToxBlade(reforgeDustCost).call({ from: this.defaultAccount });*/
+    const reforgeDustCost = await this.contracts.CryptoWars.methods.reforgeWeaponWithDustFee().call({ from: this.defaultAccount });
+    const skillDustReforgeCost =  await this.contracts.CryptoWars.methods.usdToxBlade(reforgeDustCost).call({ from: this.defaultAccount });
     this.dustReforgeCost = new BN(skillDustReforgeCost).div(new BN(10).pow(18)).toFixed(4);
 
-    // const burnCost = await this.contracts.CryptoWars.methods.burnWeaponFee().call({ from: this.defaultAccount });
-    const skillBurnCost = 0; /*await this.contracts.CryptoWars.methods.usdToxBlade(burnCost).call({ from: this.defaultAccount });*/
+    const burnCost = await this.contracts.CryptoWars.methods.burnWeaponFee().call({ from: this.defaultAccount });
+    const skillBurnCost =  await this.contracts.CryptoWars.methods.usdToxBlade(burnCost).call({ from: this.defaultAccount });
     this.burnCost = new BN(skillBurnCost).div(new BN(10).pow(18)).toFixed(4);
 
     if(!this.contracts.WeaponRenameTagConsumables) return;
