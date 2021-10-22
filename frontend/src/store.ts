@@ -1659,6 +1659,7 @@ export function createStore(web3: Web3) {
         { characterId, weaponId, targetString, fightMultiplier }
       ) {
         if (featureFlagStakeOnly) return;
+        const fightTax = await state.contracts().CryptoWars!.methods.minimumFightTax().call(defaultCallOptions(state));
 
         const res = await state
           .contracts()
@@ -1668,7 +1669,7 @@ export function createStore(web3: Web3) {
           targetString,
           fightMultiplier
         )
-          .send({value: web3.utils.toWei('0.001', 'ether'), from: state.defaultAccount, gas: '800000' });
+          .send({value: fightTax, from: state.defaultAccount, gas: '800000' });
 
         await dispatch('fetchTargets', { characterId, weaponId });
 
