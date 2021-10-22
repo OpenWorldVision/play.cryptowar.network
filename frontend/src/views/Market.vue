@@ -61,7 +61,7 @@
                       @mouseover="hover = !isMobile() || true"
                       @mouseleave="hover = !isMobile()"
                       >
-                        <strong>Price</strong>: {{ convertWeiToSkill(nftPricesById[id]) | dynamicDecimals(2, 4) }} xBlade
+                        <strong>Price</strong>: {{ convertWeiToSkill(nftPricesById[id])  | dynamicDecimals(2, 4) }} xBlade
                       </span>
                     </span>
                     <span class="d-block text-center" v-else>Loading price...</span>
@@ -298,7 +298,7 @@
                       @mouseover="hover = !isMobile() || true"
                       @mouseleave="hover = !isMobile()"
                       >
-                        {{ convertWeiToSkill(nftPricesById[id]) | dynamicDecimals(2, 4) }} xBlade
+                        {{ convertWeiToSkill(nftPricesById[id])  | dynamicDecimals(2, 4) }} xBlade
                       </span>
                     </span>
                     <span class="d-block text-center" v-else>Loading price...</span>
@@ -662,7 +662,7 @@ export default Vue.extend({
 
   data() {
     return {
-      activeType: 'weapon',
+      activeType: 'character',
       search: '',
       searchResults: [],
       allSearchResults: [],
@@ -1596,6 +1596,7 @@ export default Vue.extend({
 
   async mounted() {
     assert.ok(this.contracts.Weapons && this.contracts.Characters && this.contracts.Shields, 'Expected required contracts to be available');
+    this.searchAllCharacterListings(0);
     await this.fetchBoxPrice();
   },
 });

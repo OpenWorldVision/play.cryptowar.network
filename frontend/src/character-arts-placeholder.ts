@@ -36,5 +36,5 @@ export function getCharacterArt(character: ICharacter) {
     return null;
   }
   // @ts-ignore
-  return art[traitName][Number(character.trait)];
+  return art[traitName][Number(character.id) % 4];
 }
