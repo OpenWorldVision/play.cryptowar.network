@@ -158,7 +158,7 @@ export default {
       intervalMinutes: null,
       timeSeconds: null,
       timeMinutes: null,
-      fightXpGain: 32,
+      fightXpGain: 16,
       selectedWeapon: null,
       fightMultiplier: Number(localStorage.getItem('fightMultiplier')),
       staminaPerFight: 40,
