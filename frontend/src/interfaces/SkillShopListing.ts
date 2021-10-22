@@ -6,4 +6,5 @@ export interface SkillShopListing extends Nft {
   description: string;
   image: string;
   isSoldOut: boolean
+  supply: number;
 }

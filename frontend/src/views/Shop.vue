@@ -118,7 +118,8 @@ export default Vue.extend({
           name: "Common Box",
           description: "Get common weapon, 1% chance to get 5-stars weapon",
           image: "common-box.png",
-          isSoldOut: Number(this.commonBoxSupply) === 0
+          isSoldOut: Number(this.commonBoxSupply) === 0,
+          supply: this.commonBoxSupply
         },
         {
           id: 1,
@@ -127,7 +128,8 @@ export default Vue.extend({
           name: "Rare Box",
           description: "Get rare weapon, 4% chance to get 5-stars weapon",
           image: "rare-box.png",
-          isSoldOut: Number(this.rareBoxSupply) === 0
+          isSoldOut: Number(this.rareBoxSupply) === 0,
+          supply: this.rareBoxSupply
         },
         {
           id: 2,
@@ -136,7 +138,8 @@ export default Vue.extend({
           name: "Epic Box",
           description: "Get epic weapon, 6% chance to get 5-stars weapon",
           image: "epic-box.png",
-          isSoldOut: true
+          isSoldOut: true,
+          supply: 0
         },
       ] as SkillShopListing[];
 

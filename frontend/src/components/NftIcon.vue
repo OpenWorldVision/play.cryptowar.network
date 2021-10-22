@@ -41,7 +41,7 @@
       <div v-if="nft.type === 'SecretBox'" class="nft-details glow-container" ref="el" :class="['glow-' + (nft.stars || 0)]">
         <img class="placeholder-box" :src="imgPath(nft.image)" v-if="isShop" />
         <span v-if="isShop" class="nft-name">{{ nft.name }}</span>
-        <span v-if="isShop" class="nft-supply">Supply left: {{nft.id === 0 ? commonBoxSupply: rareBoxSupply}}</span>
+        <span v-if="isShop" class="nft-supply">Supply left: {{ nft.supply }}</span>
       </div>
 
       <div v-if="nft.type !== 'shield' && nft.type !== 'SecretBox'" class="nft-details">
