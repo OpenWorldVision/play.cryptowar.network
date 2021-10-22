@@ -558,7 +558,7 @@ import { CharacterTransactionHistoryData, ICharacterHistory,
   IWeaponHistory, WeaponTransactionHistoryData,
   IShieldHistory, ShieldTransactionHistoryData } from '@/interfaces/History';
 import { getShieldNameFromSeed } from '@/shield-name';
-import { fromWeiEther, apiUrl, defaultOptions, toBN } from '../utils/common';
+import { fromWeiEther, apiUrl, defaultOptions } from '../utils/common';
 import NftList, { NftIdType } from '@/components/smart/NftList.vue';
 import { getCleanName } from '../rename-censor';
 
@@ -762,31 +762,6 @@ export default Vue.extend({
 
       return nftList;
     },
-
-    shopOffersNftList(): SkillShopListing[] {
-      const { common, rare } = this.getBoxPrice();
-
-      const nftList = [
-        {
-          id: 0,
-          type: 'SecretBox',
-          nftPrice: toBN(fromWeiEther(common)).toNumber(),
-          name: 'Common Box',
-          description: 'Get common weapon, 1% chance to get 5-stars weapon',
-          image: 'scroll_06_te.png'
-        },
-        {
-          id: 1,
-          type: 'SecretBox',
-          nftPrice: toBN(fromWeiEther(rare)).toNumber(),
-          name: 'Rare Box',
-          description: 'Get rare weapon, 4% chance to get 5-stars weapon',
-          image: 'gold_chest.png'
-        }
-      ] as SkillShopListing[];
-
-      return nftList;
-    }
   },
 
   methods: {

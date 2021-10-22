@@ -39,8 +39,8 @@
 
 
       <div v-if="nft.type === 'SecretBox'" class="nft-details glow-container" ref="el" :class="['glow-' + (nft.stars || 0)]">
-        <img class="placeholder-shield" src="../assets/gold_chest.png" v-if="isShop" />
-        <span v-if="isShop" class="nft-name">{{nft.id === 0 ? "Common Box" :"Rare Box"}}</span>
+        <img class="placeholder-box" :src="imgPath(nft.image)" v-if="isShop" />
+        <span v-if="isShop" class="nft-name">{{ nft.name }}</span>
         <span v-if="isShop" class="nft-supply">Supply left: {{nft.id === 0 ? commonBoxSupply: rareBoxSupply}}</span>
       </div>
 
@@ -55,7 +55,7 @@
 
 <script>
 import { mapActions } from 'vuex';
-
+// Comment
 export default {
   props: ['nft', 'isDefault', 'isShop', 'favorite'],
   async created() {
@@ -94,7 +94,7 @@ export default {
       commonBoxSupply: 0,
       rareBoxSupply: 0,
       quantityOwned: 0,
-      images: require.context('../assets/elements/', false, /\.png$/)
+      images: require.context('../assets/', false, /\.png$/)
     };
   },
 
@@ -201,6 +201,12 @@ export default {
   margin-top: -10px;
 }
 
+.placeholder-box {
+  max-width: 140px;
+  max-height: 140px;
+  margin-top: -40px;
+}
+
 .placeholder-consumable {
   height: 100%;
   transform: scale(0.7);
@@ -219,6 +225,7 @@ export default {
   left: 0;
   right: 0;
   font-weight: 800;
+  margin: 4px 0;
 }
 
 .nft-details {

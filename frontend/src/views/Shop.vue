@@ -117,7 +117,7 @@ export default Vue.extend({
           nftPrice: toBN(fromWeiEther(common)).toNumber(),
           name: "Common Box",
           description: "Get common weapon, 1% chance to get 5-stars weapon",
-          image: "scroll_06_te.png",
+          image: "common-box.png",
           isSoldOut: Number(this.commonBoxSupply) === 0
         },
         {
@@ -126,8 +126,17 @@ export default Vue.extend({
           nftPrice: toBN(fromWeiEther(rare)).toNumber(),
           name: "Rare Box",
           description: "Get rare weapon, 4% chance to get 5-stars weapon",
-          image: "gold_chest.png",
+          image: "rare-box.png",
           isSoldOut: Number(this.rareBoxSupply) === 0
+        },
+        {
+          id: 2,
+          type: "SecretBox",
+          nftPrice: 0,
+          name: "Epic Box",
+          description: "Get epic weapon, 6% chance to get 5-stars weapon",
+          image: "epic-box.png",
+          isSoldOut: true
         },
       ] as SkillShopListing[];
 

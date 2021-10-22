@@ -18,8 +18,11 @@
             <span class="gtag-link-others" v-if="!nft.isSoldOut">
               Buy ({{ nft.nftPrice}} xBlade)
             </span>
-            <span  v-if="nft.isSoldOut">
+            <span  v-if="nft.isSoldOut && nft.id !== 2">
               SOLD OUT
+            </span>
+            <span  v-if="nft.id === 2">
+              COMING SOON
             </span>
           </b-button>
         </li>
