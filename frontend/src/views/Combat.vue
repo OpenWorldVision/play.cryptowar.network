@@ -90,7 +90,7 @@
                 <div class="encounter-container">
                 <div class="enemy-character">
                   <div class="encounter-element">
-                      <span :class="getCharacterTrait(e.trait).toLowerCase() + '-icon'" />
+                      <span :class="getCharacterTrait(e.trait).toLowerCase() + '-icon element-icon' " />
                     </div>
 
                     <div class="">
@@ -388,22 +388,17 @@ export default {
 <style scoped>
 .enemy-character {
   position: relative;
-  width: 14em;
+  width: 16em;
   height: 25em;
-  background-position: center;
+  background-position: left;
   background-repeat: no-repeat;
-  background-size: 115%;
-  background-color: #2e2e30cc;
-  background-image: url('../assets/cardCharacterFrame.png');
-  border: 1px solid #a28d54;
-  border-radius: 15px;
-  padding: 0.5rem;
+  background-size: 112%;
+  background-image: url('../assets/images/bg-item-top.png');
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.705), 0px 12px 7px rgba(0, 0, 0, 0.5), 0px 9px 12px rgba(0, 0, 0, 0.1);
 }
 
 .encounter img {
@@ -490,7 +485,7 @@ div.encounter.text-center {
 
 .xp-gain,
 .encounter-power {
-  color: #9e8a57 !important;
+  color: #F58B5B !important;
 }
 
 .xp-gain,
@@ -501,7 +496,8 @@ div.encounter.text-center {
 }
 
 .encounter-element {
-  top: 25px;
+  top: -8px;
+  right: 90px;
   font-size: 20px;
 }
 
@@ -548,7 +544,7 @@ div.encounter.text-center {
 
 .enemy-container {
   flex: 3;
-  border-left: 1px solid #9e8a57;
+  border-left: 1px solid #F58B5B;
 }
 
 .enemy-divider {
@@ -563,7 +559,7 @@ div.encounter.text-center {
 }
 
 .weapon-selection {
-  /* border-right: 1px solid #9e8a57; */
+  /* border-right: 1px solid #F58B5B; */
 }
 
 .weapon-header {
@@ -691,5 +687,9 @@ button.btn.button.main-font.dark-bg-text.encounter-button.btn-styled.encounter-b
     justify-content: center;
     display: block;
   }
+}
+.element-icon {
+  width: 3em;
+  height: 3em;
 }
 </style>
