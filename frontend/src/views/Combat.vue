@@ -90,7 +90,7 @@
                 <div class="encounter-container">
                 <div class="enemy-character">
                   <div class="encounter-element">
-                      <span :class="getCharacterTrait(e.trait).toLowerCase() + '-icon element-icon' " />
+                      <span :class="getCharacterTrait(e.trait).toLowerCase() + '-icon element-icon circle-element' " />
                     </div>
 
                     <div class="">
@@ -496,8 +496,8 @@ div.encounter.text-center {
 }
 
 .encounter-element {
-  top: -8px;
-  right: 90px;
+  top: -16px;
+  right: 82px;
   font-size: 20px;
 }
 
@@ -691,5 +691,13 @@ button.btn.button.main-font.dark-bg-text.encounter-button.btn-styled.encounter-b
 .element-icon {
   width: 3em;
   height: 3em;
+}
+.circle-element {
+  width: 4.5rem;
+  height: 4.5rem;
+  border: 1px solid #f48757;
+  border-radius: 50%;
+  padding: 0.5rem;
+  background-color: #15052e;
 }
 </style>
