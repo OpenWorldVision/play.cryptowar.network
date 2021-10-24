@@ -44,6 +44,12 @@
       </li>
     </router-link>
 
+    <div exact class="nav-link">
+      <li class="nav-item nav-top-links">
+        <a href="https://www.cryptowar.network/buy" target="_blank" class="gtag-link-others" tagname="shop_screen">Buy IDO</a>
+      </li>
+    </div>
+
   </b-navbar-nav>
 </template>
 
@@ -67,6 +73,10 @@ export default {
 <style scoped>
 a {
   font-weight: bold;
+  color: #ffffff;
+}
+a:hover {
+  color: #F58B5B;
 }
 
 .nav-top-links > span {
