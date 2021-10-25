@@ -2,13 +2,25 @@
   <div class="body main-font">
 
     <div v-if="ownCharacters.length === 0" class="blank-slate">
-       <div class="current-promotion promotion-hero-left">
+      <div class="current-promotion promotion-hero-left" v-if="heroAmount > 0">
         <strong class="upper-text">Only <strong class="upper-text promotion-number">{{ heroAmount }}</strong> heroes left!</strong>
+      </div>
+      <div class="current-promotion promotion-hero-left" v-if="heroAmount === 0">
+        <strong class="upper-text">No more heroes left! Please buy in Market</strong>
       </div>
       <div class="current-promotion">
         <strong class="upper-text">Start earning today!</strong>
       </div>
       <big-button
+        v-if="heroAmount === 0"
+        class="button"
+        :mainText="'Go to Market'"
+        :disabled="!canRecruit() || heroAmount < 1"
+        @click="$router.push({name: 'market'})"
+        tagname="recruit_character"
+      />
+      <big-button
+        v-if="heroAmount > 0"
         class="button"
         :mainText="`Recruit character for ${recruitCost} xBlade`"
         :disabled="!canRecruit() || heroAmount < 1"
