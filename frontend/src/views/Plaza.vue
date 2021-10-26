@@ -15,7 +15,6 @@
         v-if="heroAmount === 0"
         class="button"
         :mainText="'Go to Market'"
-        :disabled="!canRecruit() || heroAmount < 1"
         @click="$router.push({name: 'market'})"
         tagname="recruit_character"
       />
@@ -206,7 +205,8 @@ export default Vue.extend({
     }, 3000);
 
     const heroAmount = await this.contracts.Characters.methods.availableAmount().call({ from: this.defaultAccount });
-    this.heroAmount = heroAmount;
+
+    this.heroAmount =Number(heroAmount);
   },
 
   destroyed() {
