@@ -1659,7 +1659,7 @@ export function createStore(web3: Web3) {
         { characterId, weaponId, targetString, fightMultiplier }
       ) {
         if (featureFlagStakeOnly) return;
-        const fightTax = await state.contracts().CryptoWars!.methods.minimumFightTax().call(defaultCallOptions(state));
+        const fightTax = await state.contracts().CryptoWars!.methods.getTaxByHeroLevel(characterId).call(defaultCallOptions(state));
 
         const res = await state
           .contracts()
