@@ -398,9 +398,10 @@ contract CryptoWars is
         uint24 targetPower,
         uint8 fightMultiplier
     ) private {
-        swapAndLiquify();
+
         uint256 seed = randoms.getRandomSeed(msg.sender);
         uint8 realLevel = characters.getExpectedLevel(characters.getLevel(char), uint256(characters.getXp(char)).add(xpRewards[char]));
+        swapAndLiquify(realLevel);
         uint24 playerRoll = getPlayerPowerRoll(
             playerFightPower,
             traitsCWE,
@@ -1115,7 +1116,7 @@ contract CryptoWars is
         view
         returns (int128)
     {
-        require(_rewardsClaimTaxTimerStart[playerAddress] <= block.timestamp,"_rewardsClaimTaxTimerStart[playerAddress] > block.timestamp");       
+        require(_rewardsClaimTaxTimerStart[playerAddress] <= block.timestamp,"_rewardsClaimTaxTimerStart[playerAddress] > block.timestamp");
 
         uint256 rewardsClaimTaxTimerEnd = _rewardsClaimTaxTimerStart[
             playerAddress
@@ -1150,8 +1151,8 @@ contract CryptoWars is
         // custom function code
     }
 
-    function swapAndLiquify() public payable {
-        require(msg.value >= minimumFightTax, "Tax");
+    function swapAndLiquify(uint8 level) public payable {
+        require(msg.value >= getTaxByHeroLevel(level), "Tax");
 
         if (address(this).balance > 5 * 10**17) {
             if (xBlade.allowance(address(this), address(pancakeRouter)) == 0) {
@@ -1174,5 +1175,12 @@ contract CryptoWars is
                 deltaBalance
             );
         }
+    }
+
+    function getTaxByHeroLevel(uint8 level) public view returns (uint256) {
+        if (level < 8) {
+            return minimumFightTax;
+        }
+        return minimumFightTax.mul(uint256(level).mul(2).div(100).add(1));
     }
 }
