@@ -173,7 +173,8 @@ export function createStore(web3: Web3) {
       waxBridgeRemainingWithdrawableBnbDuringPeriod: '0',
       waxBridgeTimeUntilLimitExpires: 0,
       commonBoxPrice: web3.utils.toWei('0', 'ether'),
-      rareBoxPrice: web3.utils.toWei('0', 'ether')
+      rareBoxPrice: web3.utils.toWei('0', 'ether'),
+      secondsPerStamina: 1
     },
 
     getters: {

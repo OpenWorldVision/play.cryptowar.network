@@ -541,7 +541,7 @@ button.btn.button.main-font.dark-bg-text.encounter-button.btn-styled.btn-primary
   padding: 0;
 }
 hr.hr-divider {
-  border-top: 1px solid #9e8a57;
+  border-top: 1px solid #808080;
   margin-bottom: 0.5rem !important;
 }
 body {
@@ -665,7 +665,7 @@ button,
 }
 
 button.close {
-  color: #9e8a57 !important;
+  color: #ffffff !important;
 }
 
 .mm-button {
@@ -741,38 +741,24 @@ button.close {
 .btn-outline-primary {
   color: #a50eb3 !important;
 }
-
+.modal-content {
+  border-radius: 20px;
+}
 .modal-header {
-  color: #a50eb3 !important;
+  color: #fff !important;
   background: rgb(31, 31, 34);
-  background: linear-gradient(
-    180deg,
-    rgba(31, 31, 34, 1) 0%,
-    rgba(24, 27, 30, 1) 5%,
-    rgba(24, 38, 45, 1) 100%
-  );
-  border-color: #a50eb3 !important;
+  border-color: rgba(24, 27, 30, 0.5) !important;
+  font-weight: 600;
 }
 
 .modal-body {
-  color: #a50eb3 !important;
-  background: linear-gradient(
-    180deg,
-    rgba(31, 31, 34, 1) 0%,
-    rgba(24, 27, 30, 1) 5%,
-    rgba(24, 38, 45, 1) 100%
-  );
+  color: rgb(187, 187, 187) !important;
+  background: rgb(31, 31, 34);
 }
 
 .modal-footer {
-  color: #a50eb3 !important;
-  background: linear-gradient(
-    180deg,
-    rgba(31, 31, 34, 1) 0%,
-    rgba(24, 27, 30, 1) 5%,
-    rgba(24, 38, 45, 1) 100%
-  );
-  border-color: #a50eb3 !important;
+  background: rgb(31, 31, 34);
+  border-color: rgba(24, 27, 30, 0.5) !important;
 }
 
 .b-pagination > li > .page-link {
