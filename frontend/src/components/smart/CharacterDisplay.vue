@@ -145,7 +145,7 @@ export default Vue.extend({
   },
 
   computed: {
-    ...mapState(["maxStamina", "currentCharacterId", "ownedCharacterIds"]),
+    ...mapState(["maxStamina", "currentCharacterId", "ownedCharacterIds", "secondsPerStamina"]),
     ...mapGetters([
       "currentCharacter",
       "currentCharacterStamina",
@@ -158,6 +158,7 @@ export default Vue.extend({
       "getIsCharacterViewExpanded",
       "fightGasOffset",
       "fightBaseline",
+      "minutesPerStamina"
     ]),
 
     isLoadingCharacter(): boolean {
@@ -190,7 +191,7 @@ export default Vue.extend({
 
     toolTipHtml(time: string): string {
       return (
-        "Regenerates 1 point every 5 minutes, stamina bar will be full at: " +
+        `Regenerates 1 point every ${this.minutesPerStamina} minutes, stamina bar will be full at: ` +
         time
       );
     },

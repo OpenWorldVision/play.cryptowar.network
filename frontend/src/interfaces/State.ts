@@ -110,4 +110,5 @@ export interface IState {
 
   commonBoxPrice: string;
   rareBoxPrice: string;
+  secondsPerStamina: number;
 }
