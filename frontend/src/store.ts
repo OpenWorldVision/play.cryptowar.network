@@ -1663,7 +1663,7 @@ export function createStore(web3: Web3) {
         try {
           fightTax = await state.contracts().CryptoWars!.methods.getTaxByHeroLevel(characterId).call(defaultCallOptions(state));
         } catch (e){
-          fightTax = web3.utils.toWei('0.0003', 'wei');
+          fightTax = web3.utils.toWei('0.0003', 'ether');
         }
 
 
