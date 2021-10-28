@@ -665,7 +665,7 @@ button,
 }
 
 button.close {
-  color: #ffffff !important;
+  color: #53034f !important;
 }
 
 .mm-button {
