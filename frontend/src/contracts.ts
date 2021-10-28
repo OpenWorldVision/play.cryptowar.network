@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { abi as erc20Abi } from '../../build/contracts/IERC20.json';
 
-import { networks as lpStakingRewardsNetworks } from '../../build/contracts/LPStakingRewardsUpgradeable.json';
 import { networks as lpTokenNetworks } from '../../build/contracts/ExperimentToken.json';
 import { abi as stakingRewardsAbi } from '../../build/contracts/IStakingRewards.json';
 
@@ -51,10 +50,10 @@ const stakingContractAddressesFromBuild: Partial<Record<StakeType, Partial<Staki
   //   stakingRewardsAddress: (xBladeStakingRewardsNetworks as Networks)[networkId]?.address,
   //   stakingTokenAddress: (xBladeTokenNetworks as Networks)[networkId]?.address
   // },
-  lp: {
-    stakingRewardsAddress: (lpStakingRewardsNetworks as Networks)[networkId]?.address,
-    stakingTokenAddress: (lpTokenNetworks as Networks)[networkId]?.address
-  },
+  // lp: {
+  //   stakingRewardsAddress: (lpStakingRewardsNetworks as Networks)[networkId]?.address,
+  //   stakingTokenAddress: (lpTokenNetworks as Networks)[networkId]?.address
+  // },
   // lp2: {
   //   stakingRewardsAddress: (lp2StakingRewardsNetworks as Networks)[networkId]?.address,
   //   stakingTokenAddress: (lp2TokenNetworks as Networks)[networkId]?.address
