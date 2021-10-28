@@ -10,6 +10,11 @@
         <b-button class="mt-3 btn-buy" block @click="$bvModal.hide('fightResultsModal')">Close</b-button>
       </b-modal>
 
+      <b-modal id="weaponDurabilityWarning" hide-footer title="Not enough durability">
+        <div>Not enough durability, choose others weapon</div>
+        <b-button class="mt-3 btn-buy" block @click="$bvModal.hide('weaponDurabilityWarning')">Close</b-button>
+      </b-modal>
+
       <div class="row">
         <div class="col">
           <div class="message-box" v-if="!currentCharacter">You need to select a character to do battle.</div>
@@ -222,7 +227,7 @@ export default {
     ...mapMutations(['setIsInCombat']),
     getEnemyArt,
     weaponHasDurability(id) {
-      return this.getWeaponDurability(id) >= this.fightMultiplier;
+      return this.getWeaponDurability(id) >= this.fightMultiplier * 3;
     },
     charHasStamina(){
       return this.currentCharacterStamina >= this.staminaPerFight;
