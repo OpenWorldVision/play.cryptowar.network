@@ -51,7 +51,7 @@
       ref="claim-confirmation-modal"
       title="Claim xBlade Rewards"
       size="lg"
-      :ok-title="`OK, I'll claim and miss out ${formattedBonusLost} xBlade bonus`"
+      :ok-title="`OK, I'll claim and miss out ${this.formattedTaxAmount} xBlade tax`"
       @ok="onClaimTokens()"
     >
       You are about to
@@ -60,11 +60,10 @@
           ? "pay " +
             formattedRewardsClaimTax +
             " tax for early withdrawal, costing you " +
-            this.formattedTaxAmount +
-            " xBlade. You will also "
+            this.formattedTaxAmount
           : ""
       }}
-      miss out on {{ formattedBonusLost }} bonus xBlade. Are you sure you wish
+      . Are you sure you wish
       to continue? <b>This action cannot be undone.</b>
       <div>
         <hr class="hr-divider" />
