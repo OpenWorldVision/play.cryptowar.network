@@ -85,10 +85,11 @@ export default Vue.extend({
 
     getRewardDiffBonus(level: number, targetLevel: number): string {
       return (
-        (this.getAverageRewardAtLevel(targetLevel) /
+        ((this.getAverageRewardAtLevel(targetLevel) /
           this.getAverageRewardAtLevel(level + 1)) *
           100 -
-        100
+          100) /
+        10
       ).toFixed(2);
     },
 

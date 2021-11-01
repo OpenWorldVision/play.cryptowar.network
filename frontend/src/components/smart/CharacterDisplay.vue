@@ -57,7 +57,7 @@
                 />
               </p>
             </div>
-          <earnings-calculator />
+          <!-- <earnings-calculator /> -->
           </div>
         </div>
       </div>
@@ -129,7 +129,6 @@ import { getCharacterArt } from "../../character-arts-placeholder";
 import SmallBar from "../SmallBar.vue";
 import CharacterArt from "../CharacterArt.vue";
 import { CharacterPower, CharacterTrait } from "../../interfaces";
-import EarningsCalculator from "./EarningsCalculator.vue";
 import { RequiredXp } from "../../interfaces";
 import Hint from "../Hint.vue";
 import Vue from "vue";
@@ -141,7 +140,6 @@ export default Vue.extend({
     CharacterArt,
     SmallBar,
     Hint,
-    EarningsCalculator,
   },
 
   computed: {
