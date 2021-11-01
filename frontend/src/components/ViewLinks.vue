@@ -50,6 +50,12 @@
       </li>
     </div>
 
+    <router-link :to="{ name: 'referral' }" exact class="nav-link">
+      <li class="nav-item nav-top-links">
+        <span class="gtag-link-others" tagname="referral_screen">Referral</span>
+      </li>
+    </router-link>
+
   </b-navbar-nav>
 </template>
 

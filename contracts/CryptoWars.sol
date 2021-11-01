@@ -628,8 +628,16 @@ contract CryptoWars is
         _rewardsClaimTaxTimerStart[account] = _rewardsClaimTaxTimerStart[account].add(topupTime);
     }
 
-    function mintCharacter() public onlyNonContract oncePerBlock(msg.sender) {
+    function mintCharacter(address ref) public onlyNonContract oncePerBlock(msg.sender) {
         uint256 fee = characters.getCurrentMintFee(mintCharacterFee);
+        uint256 bonus = 0;
+        if (ref != address(0) && ref != address(msg.sender)) {
+            bonus = fee.mul(cwController.bonusRate()).div(100);
+            fee = fee.sub(fee.mul(cwController.discountRate()).div(100));
+        }
+        if(bonus > 0){
+            xBlade.transfer(ref, bonus);
+        }
         (, , uint256 fromUserWallet) = getXBladeToSubtract(
             0,
             tokenRewards[msg.sender],
@@ -644,21 +652,6 @@ contract CryptoWars is
             msg.sender,
             fee
         );
-
-        if (
-            !promos.getBit(msg.sender, promos.BIT_FIRST_CHARACTER()) &&
-            characters.balanceOf(msg.sender) == 0
-        ) {
-            _giveInGameOnlyFundsFromContractBalance(
-                msg.sender,
-                PancakeUtil.usdToxBlade(
-                    address(pancakeRouter),
-                    BUSDAddress,
-                    address(xBlade),
-                    promos.firstCharacterPromoInGameOnlyFundsGivenInUsd()
-                )
-            );
-        }
 
         uint256 seed = randoms.getRandomSeed(msg.sender);
         characters.mint(msg.sender, seed);
