@@ -2,7 +2,7 @@
   <div class="results-panel">
     <span class="outcome">{{ getSuccessText() }}</span>
     <span class="roll">{{ "You rolled "+results[1]+", Enemy rolled "+results[2] }}</span>
-    <span v-if="results[0]" class="reward">
+    <span class="reward">
       {{ "You earned "+results[3]+" xp"}}
       <br>
       <span v-tooltip="convertWei(results[4])+' xBlade'">{{"and "+formattedXBlade}}</span>
