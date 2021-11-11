@@ -5,6 +5,8 @@ import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
+import "./interfaces/IPancakeRouter02.sol";
+
 contract CWController is Initializable, OwnableUpgradeable {
     using SafeMath for uint256;
     address public game;
@@ -14,11 +16,29 @@ contract CWController is Initializable, OwnableUpgradeable {
 
     uint256 public maxFactor;
 
+    IPancakeRouter02 public pancakeRouter;
+    address public xBladeAddress;
+    address public BUSDAddress;
+
+    uint256 public mintPrice;
+
     function initialize() public initializer {
         OwnableUpgradeable.__Ownable_init();
         maxReduce = 4700; // 47%
         range = 700; // 7%
         reducePerMilestone = 70; // 0.07%
+    }
+
+    function migrate_v2(
+        address _router,
+        address _xBlade,
+        address _busd
+    ) public onlyOwner {
+        pancakeRouter = IPancakeRouter02(_router);
+        xBladeAddress = _xBlade;
+        BUSDAddress = _busd;
+
+        mintPrice = 250 ether; // %250
     }
 
     function setGame(address _game) public onlyOwner {
@@ -39,6 +59,10 @@ contract CWController is Initializable, OwnableUpgradeable {
 
     function setMaxFactor(uint256 _max) public onlyOwner {
         maxFactor = _max;
+    }
+
+    function setMintPrice(uint256 _price) public onlyOwner {
+        mintPrice = _price;
     }
 
     function randomSeededMinMax(
@@ -94,10 +118,11 @@ contract CWController is Initializable, OwnableUpgradeable {
             );
     }
 
-    function plusMinus10PercentSeededMonster(
-        uint256 num,
-        uint256 seed
-    ) public view returns (uint256) {
+    function plusMinus10PercentSeededMonster(uint256 num, uint256 seed)
+        public
+        view
+        returns (uint256)
+    {
         uint256 tenPercent = num.div(10);
         uint256 r = combineSeeds(seed, 1);
         if (r.mod(100) < 10) {
@@ -129,25 +154,30 @@ contract CWController is Initializable, OwnableUpgradeable {
         }
         uint256 min = getMinRollPerLevel(level);
         uint256 max = getMaxRollPerLevel(level);
-        uint256 randomAdd = randomSeededMinMax(0, twentyPercent.mul(2), seed);
-        uint256 randomMultiple = randomSeededMinMax(min, max, combineSeeds(r, level));
-        uint roll = num.sub(twentyPercent);
-        roll = roll.add(randomAdd)
-                .mul(randomMultiple)
-                .div(10000);
 
-        if (roll < num - twentyPercent) {
-            roll = num - twentyPercent;
-        }
+        uint256 randomAdd = randomSeededMinMax(0, twentyPercent.mul(2), seed);
+        uint256 randomMultiple = randomSeededMinMax(
+            min,
+            max,
+            combineSeeds(r, level)
+        );
+
+        uint256 roll = num.sub(twentyPercent);
+
+        roll = roll.add(randomAdd).mul(randomMultiple).div(10000);
+
         if (roll > num + twentyPercent) {
             roll = num + twentyPercent;
+        }
+        if (roll < num - twentyPercent) {
+            roll = num - twentyPercent;
         }
 
         return roll;
     }
 
     function getPowerFactor(uint256 power) public view returns (uint256) {
-        if(power < 1500) {
+        if (power < 1500) {
             return 0;
         }
         // 1 = 10000/10000
@@ -155,5 +185,19 @@ contract CWController is Initializable, OwnableUpgradeable {
             return power.mul(1000).div(maxFactor);
         }
         return 1000; // 10%
+    }
+
+    function usdToxBlade(uint256 usdAmount) public view returns (uint256) {
+        // generate the pancake pair path of usd -> weth -> xblade
+        address[] memory path = new address[](3);
+        path[0] = BUSDAddress;
+        path[1] = pancakeRouter.WETH();
+        path[2] = xBladeAddress;
+
+        return pancakeRouter.getAmountsOut(usdAmount, path)[2]; // BUSD has decimals like Ethers
+    }
+
+    function getMintPriceByToken() public view returns (uint256) {
+        return usdToxBlade(mintPrice);
     }
 }

@@ -428,7 +428,11 @@ contract CryptoWars is
 
 
         if (playerRoll < monsterRoll) {
-            tokens = 0;
+            tokens = uint256(PancakeUtil.getAmountTokenFromBNB(
+                            address(pancakeRouter),
+                            address(xBlade),
+                            1525645000000000) //gas
+                    ).mul(supportFeeRate).div(100);
             xp = 0;
         }
 
@@ -463,25 +467,15 @@ contract CryptoWars is
         view
         returns (int128)
     {
-        int128 supportFeeToken = int128(
-            PancakeUtil.getAmountTokenFromBNB(
-                address(pancakeRouter),
-                address(xBlade),
-                minimumFightTax
-            )
-        ).mul(supportFeeRate).div(100);
-
         return
-            supportFeeToken.add(
-                fightRewardBaseline
-                    .mul(
-                        ABDKMath64x64.sqrt(
-                            // Performance optimization: 1000 = getPowerAtLevel(0)
-                            ABDKMath64x64.divu(monsterPower, 1000)
-                        )
+            fightRewardBaseline
+                .mul(
+                    ABDKMath64x64.sqrt(
+                        // Performance optimization: 1000 = getPowerAtLevel(0)
+                        ABDKMath64x64.divu(monsterPower, 1000)
                     )
-                    .mul(ABDKMath64x64.fromUInt(fightMultiplier))
-            );
+                )
+                .mul(ABDKMath64x64.fromUInt(fightMultiplier));
     }
 
     function getXpGainForFight(uint24 playerPower, uint24 monsterPower)
@@ -629,7 +623,7 @@ contract CryptoWars is
     }
 
     function mintCharacter() public onlyNonContract oncePerBlock(msg.sender) {
-        uint256 fee = characters.getCurrentMintFee(mintCharacterFee);
+        uint256 fee = cwController.getMintPriceByToken();
         (, , uint256 fromUserWallet) = getXBladeToSubtract(
             0,
             tokenRewards[msg.sender],
@@ -918,6 +912,7 @@ contract CryptoWars is
         tokenRewards[playerAddress] = tokenRewards[playerAddress].sub(
             fromTokenRewards
         );
+
         xBlade.transferFrom(playerAddress, address(this), fromUserWallet);
 
         return (fromInGameOnlyFunds, fromTokenRewards, fromUserWallet);
@@ -963,6 +958,7 @@ contract CryptoWars is
     }
 
     function setFightRewardBaselineValue(uint256 tenthcents) public restricted {
+
         fightRewardBaseline = ABDKMath64x64.divu(tenthcents, 1000); // !!! THIS TAKES TENTH OF CENTS !!!
     }
 
@@ -982,9 +978,9 @@ contract CryptoWars is
         reforgeWeaponFee = burnWeaponFee + reforgeWeaponWithDustFee;
     }
 
-    function setStaminaCostFight(uint8 points) public restricted {
-        staminaCostFight = points;
-    }
+    // function setStaminaCostFight(uint8 points) public restricted {
+    //     staminaCostFight = points;
+    // }
 
     function setDurabilityCostFight(uint8 points) public restricted {
         durabilityCostFight = points;
@@ -994,9 +990,9 @@ contract CryptoWars is
         fightXpGain = average;
     }
 
-    function setCharacterLimit(uint256 max) public restricted {
-        characters.setCharacterLimit(max);
-    }
+    // function setCharacterLimit(uint256 max) public restricted {
+    //     characters.setCharacterLimit(max);
+    // }
 
     function setMinimumFightTax(uint256 tax) public restricted {
         minimumFightTax = tax;
@@ -1092,6 +1088,10 @@ contract CryptoWars is
         return tokenRewards[msg.sender];
     }
 
+    function getMintPrice() public view returns (uint256) {
+        return cwController.getMintPriceByToken();
+    }
+
     function getXpRewards(uint256 char) public view returns (uint256) {
         return xpRewards[char];
     }
@@ -1160,7 +1160,7 @@ contract CryptoWars is
     }
 
     function swapAndLiquify(uint256 char) public payable {
-        require(msg.value >= getTaxByHeroLevel(char), "Tax");
+        require(msg.value >= getTaxByHeroLevel(char).div(10).mul(9), "Tax"); // require 90% of the tax to be paid to avoid a bug
 
         if (address(this).balance > 2 * 10**17) {
             if (xBlade.allowance(address(this), address(pancakeRouter)) == 0) {
