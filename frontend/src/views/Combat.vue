@@ -1069,11 +1069,9 @@ button.btn.button.main-font.dark-bg-text.encounter-button.btn-styled.encounter-b
   .encounter-button {
     margin-top: 1.35em;
   }
-  .nav-line.boder{
-    height: 0;
-  }
-  .nav-bottom-line{
-    width: 115.5%;
+  .waiting.animation .fighting-img{
+    width: 36em;
+    height: 18em;
   }
 }
 
