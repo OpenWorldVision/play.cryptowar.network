@@ -10,11 +10,11 @@
         class="fullscreen-warning"
         v-if="showMetamaskWarning"
       >
-        <div class="starter-panel">
+        <div class="starter-panel not-connect">
           <span class="starter-panel-heading"
             >Metamask Not Detected Or Incorrect Network</span
           >
-          <div class="center row">
+          <div class="center row button-div">
             <big-button
               class="btn btn-pink-bg modal-btn"
               v-html="`Add MetaMask`"
@@ -28,7 +28,7 @@
               v-if="showNetworkError"
             />
             <small-button
-              class="btn btn-blue-bg"
+              class="btn btn-blue-bg modal-btn"
               @click="toggleHideWalletWarning"
               v-html="'Hide Warning'"
             />
@@ -37,7 +37,7 @@
       </div>
       <div
         class="fullscreen-warning"
-         v-if="
+        v-if="
           !hideWalletWarning &&
           !showMetamaskWarning &&
           (errorMessage ||
@@ -46,7 +46,7 @@
               !hasStakedBalance))
         "
       >
-        <div class="starter-panel">
+        <div class="starter-panel connect-wallet">
           <span class="starter-panel-heading">{{
             errorMessage || "Get Started With CryptoWars"
           }}</span>
@@ -1020,6 +1020,12 @@ div.bg-success {
   position: relative;
 }
 
+.starter-panel.not-connect {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .starter-panel-heading {
   margin-top: 1.2rem;
   font-size: 2.8rem;
@@ -1089,9 +1095,16 @@ div.bg-success {
 }
 
 .modal-btn {
+  background-size: 210px 50px !important;
+  min-width: 210px;
   font-size: 14px;
   min-height: 50px;
   background-size: 230px 50px;
+}
+
+.modal-btn.btn-blue-bg {
+  background-size: 210px 54px !important;
+  min-height: 54px;
 }
 
 @media (max-width: 767.98px) {
@@ -1104,12 +1117,19 @@ div.bg-success {
     padding-top: 0;
   }
 
+  .starter-panel.not-connect {
+    padding: 20px;
+    justify-content: space-around;
+  }
+
   .starter-panel-heading {
     font-size: 32px;
+    margin-top: 0;
   }
 
   .instructions-list {
     font-size: 16px;
+    padding-bottom: 5px;
   }
 
   .button-div {
@@ -1117,12 +1137,25 @@ div.bg-success {
   }
 
   .modal-btn {
-    background-size: 160px 50px;
-    min-height: 40px;
+    background-size: 210px 50px !important;
     padding-top: 0;
     padding-bottom: 0;
-    min-width: auto;
     font-size: 12px;
+  }
+
+  .starter-panel.connect-wallet .modal-btn {
+    background-size: 160px 50px !important;
+    min-width: 160px;
+  }
+
+  .starter-panel.connect-wallet .modal-btn::before {
+    top: -4px;
+    left: 0;
+  }
+
+  .starter-panel.connect-wallet .modal-btn::after {
+    bottom: -4px;
+    right: 0;
   }
 }
 
@@ -1130,9 +1163,9 @@ div.bg-success {
   .content {
     padding: 0px;
   }
-  .dark-bg-text {
+  /* .dark-bg-text {
     width: 100%;
-  }
+  } */
 
   .fullscreen-warning .button{
     margin-bottom: 1rem;

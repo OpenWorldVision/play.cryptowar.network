@@ -21085,6 +21085,14 @@ margin-bottom: 1.5rem;
     background-image: radial-gradient(ellipse at center, #FFFF90 -10%, transparent 55%), radial-gradient(ellipse at center, transparent, transparent);
 }
 
+.btn-blue-bg::before {
+    top: -3px;
+}
+
+.btn-blue-bg::after {
+    bottom: -3px;
+}
+
 .contentModal {
     background: red;
 }
