@@ -786,7 +786,6 @@ button.close {
 }
 
 #selectHeroOrWeaponModal .modal-content{
-  min-width: 1150px;
   height: 100%;
 }
 

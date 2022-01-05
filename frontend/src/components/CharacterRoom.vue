@@ -78,7 +78,7 @@ export default {
         return true;
       }else if(now.getDate()> timeStart.getDate()) {
         return true;
-      }else if(now.getHours() > timeStart.getHours()) {
+      }else if(now.getHours() > timeStart.getHours() +1) {
         return true;
       }
       else {
