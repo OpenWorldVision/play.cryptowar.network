@@ -71,7 +71,7 @@ export default {
       }
       const now = new Date();
       //@ts-ignore
-      const timeStart = new Date(this.timeRoomStart);
+      const timeStart = new Date(this.timeRoomStart*1000);
       if(now.getFullYear() > timeStart.getFullYear()){
         return true;
       }else if(now.getMonth() > timeStart.getMonth()) {
