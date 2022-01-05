@@ -359,6 +359,10 @@ contract CareerMode is
         feeRate = _rate;
     }
 
+    function setMinimumRoundDuration(uint256 _minimumRoundDuration) public restricted{
+        minimumRoundDuration = _minimumRoundDuration;
+    }
+
     /** GETTERS */
 
     function unpackFightData(uint96 playerData)

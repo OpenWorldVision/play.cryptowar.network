@@ -9,7 +9,7 @@ module.exports = async function (deployer, network) {
   }
 
   if (network === "bscmainnet") {
-    careerModeProxy = "";
+    careerModeProxy = "0x72E9A1be11609Ba5d03ae153f5e0d2F1064C169E";
   }
   await upgradeProxy(careerModeProxy, CareerMode, {
     deployer,
