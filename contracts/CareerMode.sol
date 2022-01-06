@@ -272,9 +272,9 @@ contract CareerMode is
         uint24 opponentRoll = getPlayerPowerRoll(_opponentPower, seed); // requester roll
         Room storage r = careerModeRooms[_roomId];
 
-        uint256 tokensWin = r.matchReward.sub(
+        uint256 tokensWin =  r.matchReward.sub(
             r.matchReward.mul(feeRate).div(100)
-        );
+        ).add(r.matchReward);
 
         _requestFight.win = opponentRoll >= playerRoll;
 
