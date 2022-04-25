@@ -7,7 +7,7 @@ contract xBlade is ERC20PausableUpgradeable, OwnableUpgradeable {
     using SafeMathUpgradeable for uint256;
 
     uint256 private constant DECIMALS = 18;
-    uint256 private constant INITIAL_SUPPLY = 100 * 10**6 * 10**DECIMALS;
+    uint256 private constant INITIAL_SUPPLY = 15 * 10**6 * 10**DECIMALS;
 
     mapping(address => bool) private tokenBlacklist;
     mapping(address => bool) private _sellAddresses;
@@ -52,7 +52,7 @@ contract xBlade is ERC20PausableUpgradeable, OwnableUpgradeable {
         canClaim = false;
         rewardCycleBlock = 7 days;
         threshHoldTopUpRate = 2;
-        _mint(address(this), INITIAL_SUPPLY);
+        _mint(owner_, INITIAL_SUPPLY);
         _approve(address(this), msg.sender, totalSupply());
     }
 
