@@ -3,7 +3,7 @@ pragma solidity ^0.6.2;
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20BurnableUpgradeable.sol";
 
-contract xBlade is ERC20BurnableUpgradeable, OwnableUpgradeable {
+contract xBladeTT is ERC20BurnableUpgradeable, OwnableUpgradeable {
     using SafeMathUpgradeable for uint256;
 
     uint256 private constant DECIMALS = 18;
