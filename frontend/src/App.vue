@@ -1255,7 +1255,7 @@ div.bg-success {
   padding: 0 1em;
   height: calc(100vh - 56px);
   margin: auto;
-  margin-top: 88px;
+  margin-top: 137px;
 }
 
 .fullscreen-warning {
@@ -1458,25 +1458,18 @@ div.bg-success {
   .content {
     padding: 0px;
   }
-  /* .dark-bg-text {
-    width: 100%;
-  } */
 
   .fullscreen-warning .button {
     margin-bottom: 1rem;
     justify-content: center;
   }
-  /* .starter-panel{
-    background-size: auto 100%;
-    background-position: -150px -36px;
-  } */
   .blank-slate .button h1 {
     font-size: 1.5rem;
   }
 }
 @media (max-width: 1400px) {
   .content {
-    margin-top: 102px;
+    margin-top: 177px;
   }
 }
 .not-connect.switch-network {
@@ -1488,6 +1481,9 @@ div.bg-success {
   .not-connect.switch-network {
     width: 400px;
     height: 290px;
+  }
+  .content {
+    margin-top: 200px;
   }
 }
 @media (max-width: 375.98px) {
