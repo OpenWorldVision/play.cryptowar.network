@@ -65,24 +65,13 @@
       </div>
     </b-navbar>
     <div class="nav-bottom-line"></div>
-    <div class="container_row">
-      <!-- <img src="../assets/divider4.png" class="expander-divider" /> -->
-      <!-- <b-button
-        class="expander-button"
-        @click="toggleCharacterView"
-        v-if="ownCharacters.length > 0"
-      >
-        <b-icon-arrows-expand
-          class="expand-collapse-icon"
-          v-if="!getIsCharacterViewExpanded"
-        />
-        <b-icon-arrows-collapse
-          class="expand-collapse-icon"
-          v-if="getIsCharacterViewExpanded"
-          aria-hidden="true"
-        />
-      </b-button> -->
+    <div class="container_row notice-headline">
+      <p>
+        Greeting everyone, we want to announce that Cryptowar will be discontinued after
+        <span>06/06/2022</span>
+      </p>
     </div>
+    <div class="nav-bottom-line"></div>
   </div>
 </template>
 
@@ -212,10 +201,20 @@ a {
 </style>
 
 <style scoped>
+.notice-headline {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #000;
+}
+.notice-headline p {
+  margin: 0;
+}
+.notice-headline span {
+  font-weight: 700;
+}
 .logo {
   max-width: 86px;
 }
-
 .main-nav > .view-links {
   flex: 2.3;
 }
