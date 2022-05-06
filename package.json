@@ -15,6 +15,7 @@
     "censor-sensor": "^1.0.6",
     "dotenv": "^8.2.0",
     "solc": "^0.8.9",
+    "truffle-flattener": "^1.6.0",
     "web3": "^1.6.1"
   },
   "devDependencies": {
@@ -24,6 +25,7 @@
     "@truffle/provider": "^0.2.32",
     "bignumber.js": "^9.0.1",
     "graph-data-structure": "^2.0.0",
+    "hardhat": "^2.9.3",
     "imagemin": "^8.0.0",
     "imagemin-pngquant": "^9.0.2",
     "lerna": "^4.0.0",
@@ -84,7 +86,7 @@
     "verify:PancakeUtil": "npx truffle run verify PancakeUtil@0xC2AABB5820325D2C229fb085E9f34CA366108d51 --network bscmainnet",
     "verify:CWController": "npx truffle run verify CWController@0x85b47cc62b0dd4771a91b9bae7857ca702e7ccf4 --network bscmainnet",
     "verify:stakexBLADE": "npx truffle run verify BNBLPStakingRewardsUpgradeable@0x633f5bbff95CE461a135d1a7482ebC52Cf5b1B5b --network bscmainnet",
-    "flattener": "truffle-flattener  contracts/xBlade.sol > temp/xBlade.sol"
+    "flattener": "truffle-flattener ./node_modules/@openzeppelin/contracts/proxy/TransparentUpgradeableProxy.sol > ./T.sol"
   },
   "keywords": [],
   "author": "",
