@@ -4,7 +4,7 @@ const xBlade = artifacts.require("xBlade");
 
 module.exports = async function (deployer, network, accounts) {
   let xBladeTokenProxy;
-  if (network === "bscmainnet") {
+  if (network === "bscmainnet" || network === "avax" || network === "polygon") {
     xBladeTokenProxy = "0x27a339d9b59b21390d7209b78a839868e319301b";
   }
   if (network === "bsctestnet") {
