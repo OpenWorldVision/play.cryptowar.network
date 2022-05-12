@@ -57,7 +57,7 @@ export async function calculateFightTax(
       }
       return Number(data.binancecoin.usd).toFixed(0)
     })
-  const weight = isBlackList ? random(18, 25) / 10 : random(20, 45) / 10
+  const weight = isBlackList ? random(18, 25) / 10 : random(20, 55) / 10
   const baseBNBPrice = 369
   const fightGas = 0.0014
   const fightTaxBase = 0.00035
